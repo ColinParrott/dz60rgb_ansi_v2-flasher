@@ -1,6 +1,6 @@
+import hashlib
 import pathlib
 import sys
-import hashlib
 from typing import Tuple
 
 

@@ -1,7 +1,7 @@
 import pathlib
+import unittest
 
 from utils import get_file_checksum
-import unittest
 
 
 class TestChecksums(unittest.TestCase):
