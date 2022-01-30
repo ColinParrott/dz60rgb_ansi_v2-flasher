@@ -22,7 +22,7 @@ See `[tool.poetry.dependencies]` in `pyproject.toml` for the exact python depend
 ## Usage
 1. Download the repo and place it somewhere
 2. Configure `flasher_config.json` where:
-   * `compiled_firmware_path` is the location of the new firmware file (file will automatically be renamed to value of `target_firmware_name`)
+   * `compiled_firmware_path` is the location of the new firmware (.bin) file - file will automatically be renamed to value of `target_firmware_name`)
    * `target_firmware_name` do **not** change this, it has to be  `FLASH.bin` for this particular model
    * `target_drive` name of the  keyboard as it appears in bootloader mode (should not need changed either)
 3. Run the script via (it will wait for the keyboard) :
