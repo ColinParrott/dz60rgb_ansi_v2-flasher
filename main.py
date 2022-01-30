@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import Dict
 
-from usb_handler import install_new_firmware
+from usb.usb_handler import install_new_firmware
 from utils import exit_program
 
 CONFIG_PATH = "flasher_config.json"

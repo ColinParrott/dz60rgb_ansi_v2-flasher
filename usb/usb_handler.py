@@ -1,6 +1,7 @@
 import os
 import pathlib
 import shutil
+import subprocess
 import sys
 import time
 from typing import Dict
@@ -9,7 +10,7 @@ import wmi
 
 from utils import exit_program, get_file_checksum
 
-BACKUP_FOLDER = pathlib.Path("firmware_backup")
+BACKUP_FOLDER = pathlib.Path(os.getcwd() +  "/firmware_backup")
 
 
 def install_new_firmware(config: Dict):
@@ -27,6 +28,12 @@ def install_new_firmware(config: Dict):
     # install and verify new firmware
     copy_over_new_firmware(new_fw_path, installed_firmware_path)
     verify_new_firmware(new_firmware_checksum, installed_firmware_path)
+
+    time.sleep(0.5)
+    # safely eject keyboard
+    eject_keyboard(keyboard_drive)
+
+    print("Done. New firmware flashed successfully!")
 
 
 def get_keyboard_usb_drive(drive_name: str) -> wmi._wmi_object:
@@ -95,4 +102,18 @@ def verify_new_firmware(actual_firmware_checksum, new_path: pathlib.Path):
             "Failed to verify new firmware: the checksum did not match. Please flash manually with the old firmware found in: %s" % str(
                 BACKUP_FOLDER))
 
-    print("Done. New firmware flashed successfully!")
+
+def eject_keyboard(drive: wmi._wmi_object):
+    proc = subprocess.run(
+        args=[
+            'powershell',
+            '$vol = get-wmiobject -Class Win32_Volume | where{$_.label -eq \'%s\'}; $Eject =  New-Object -comObject Shell.Application; $Eject.NameSpace(17).ParseName($vol.driveletter).InvokeVerb(“Eject”);' % drive.volumename
+        ],
+        text=True,
+        stdout=subprocess.PIPE
+    )
+
+    if proc.returncode == 0:
+        print("Safely ejected keyboard")
+    else:
+        print("Failed to safely eject keyboard. Try manually doing it or just unplug the keyboard if you can't")
