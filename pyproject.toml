@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "dz60rgb_ansi_v2_flasher"
+version = "0.1.0"
+description = ""
+authors = ["Colin Parrott <colinparrott2@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pywin32 = "^303"
+WMI = "^1.5.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
