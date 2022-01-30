@@ -11,7 +11,7 @@ The script does the following:
 
 ## Requirements
 
-* Python >= 3.10
+* Python >= 3.7
 
 ### Python dependencies
 * pywin32 >= 303
