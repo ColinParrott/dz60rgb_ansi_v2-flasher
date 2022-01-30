@@ -10,7 +10,7 @@ import wmi
 
 from utils import exit_program, get_file_checksum
 
-BACKUP_FOLDER = pathlib.Path(os.getcwd() +  "/firmware_backup")
+BACKUP_FOLDER = pathlib.Path(sys.path[0] + os.sep + "firmware_backup")
 
 
 def install_new_firmware(config: Dict):

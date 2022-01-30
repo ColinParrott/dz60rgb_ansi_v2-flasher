@@ -1,11 +1,13 @@
 import json
+import os
+import sys
 from pathlib import Path
 from typing import Dict
 
 from usb.usb_handler import install_new_firmware
 from utils import exit_program
 
-CONFIG_PATH = "flasher_config.json"
+CONFIG_PATH = sys.path[0] + os.sep + "flasher_config.json"
 
 
 def read_config() -> Dict:
